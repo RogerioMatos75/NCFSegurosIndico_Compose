@@ -8,13 +8,13 @@ plugins {
 }
 
 android {
-    namespace = "com.ncf.seguros.indico.v2"  // Verify this matches your package structure
-    compileSdk = 34  // Updated from 35 to 34
+    namespace = "com.ncf.seguros.indico"  // Fixed namespace to match actual package structure
+    compileSdk = 34
     
     defaultConfig {
-        applicationId = "com.ncf.seguros.indico.v2"
+        applicationId = "com.ncf.seguros.indico"  // Fixed applicationId to match namespace
         minSdk = 24
-        targetSdk = 34  // Updated from 35 to 34
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         
@@ -32,27 +32,33 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isDebuggable = true
+        }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+
     buildFeatures {
         compose = true
         buildConfig = true
     }
     
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
     
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
     }
 }
 
